@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://d4fio87n38vhs"]
+
+[ext_resource type="Script" uid="uid://dadj1d3f3aulh" path="res://Gameplay/Assets/Characters/PC/Code/PC.gd" id="1_diy82"]
+
+[sub_resource type="Curve" id="Curve_8cpq2"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jg4h"]
+size = Vector2(8, 16)
+
+[node name="Player" type="CharacterBody2D" unique_id=1257364350]
+script = ExtResource("1_diy82")
+acceleration_curve = SubResource("Curve_8cpq2")
+curve_time = 125.0
+
+[node name="Sprite" type="ColorRect" parent="." unique_id=1159617657]
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 4.0
+offset_bottom = 8.0
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=497662798]
+shape = SubResource("RectangleShape2D_5jg4h")
+
+[node name="Camera Pivot" type="Node2D" parent="." unique_id=1622286691]
+
+[node name="Camera" type="Camera2D" parent="Camera Pivot" unique_id=955302769]
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="Player Checks" type="Node2D" parent="." unique_id=531800283]
+
+[node name="Coyote Time" type="Timer" parent="Player Checks" unique_id=958524419]
+unique_name_in_owner = true
+
+[node name="Jump Buffer" type="Timer" parent="Player Checks" unique_id=267421779]
+unique_name_in_owner = true
+
+[node name="Corner Correction" type="Node2D" parent="Player Checks" unique_id=699570337]
+unique_name_in_owner = true
+
+[node name="Head" type="Node2D" parent="Player Checks/Corner Correction" unique_id=745938313]
+
+[node name="Head Left" type="Node2D" parent="Player Checks/Corner Correction/Head" unique_id=489816997]
+unique_name_in_owner = true
+
+[node name="Tip" type="RayCast2D" parent="Player Checks/Corner Correction/Head/Head Left" unique_id=1064162606]
+position = Vector2(-5, -7)
+target_position = Vector2(0, -5)
+collision_mask = 2
+
+[node name="Center" type="RayCast2D" parent="Player Checks/Corner Correction/Head/Head Left" unique_id=1517434324]
+position = Vector2(0, -7)
+target_position = Vector2(0, -5)
+collision_mask = 2
+
+[node name="Head Right" type="Node2D" parent="Player Checks/Corner Correction/Head" unique_id=770509736]
+unique_name_in_owner = true
+
+[node name="Tip" type="RayCast2D" parent="Player Checks/Corner Correction/Head/Head Right" unique_id=1988779787]
+position = Vector2(5, -7)
+target_position = Vector2(0, -5)
+collision_mask = 2
+
+[node name="Center" type="RayCast2D" parent="Player Checks/Corner Correction/Head/Head Right" unique_id=538383238]
+position = Vector2(0, -7)
+target_position = Vector2(0, -5)
+collision_mask = 2
+
+[node name="Base" type="Node2D" parent="Player Checks/Corner Correction" unique_id=393615984]
+
+[node name="Base Left" type="Node2D" parent="Player Checks/Corner Correction/Base" unique_id=534188934]
+unique_name_in_owner = true
+
+[node name="Tip" type="RayCast2D" parent="Player Checks/Corner Correction/Base/Base Left" unique_id=470590725]
+position = Vector2(-4, 7)
+target_position = Vector2(-5, 0)
+collision_mask = 2
+
+[node name="Center" type="RayCast2D" parent="Player Checks/Corner Correction/Base/Base Left" unique_id=794057631]
+position = Vector2(-4, 3)
+target_position = Vector2(-5, 0)
+collision_mask = 2
+
+[node name="Base Right" type="Node2D" parent="Player Checks/Corner Correction/Base" unique_id=1016107127]
+unique_name_in_owner = true
+
+[node name="Tip" type="RayCast2D" parent="Player Checks/Corner Correction/Base/Base Right" unique_id=625901129]
+position = Vector2(4, 7)
+target_position = Vector2(5, 0)
+collision_mask = 2
+
+[node name="Center" type="RayCast2D" parent="Player Checks/Corner Correction/Base/Base Right" unique_id=617969874]
+position = Vector2(4, 3)
+target_position = Vector2(5, 0)
+collision_mask = 2
